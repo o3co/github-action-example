@@ -12,8 +12,9 @@ jobs:
     permissions:
       packages: write
     steps:
-      - uses: o3co/github-action-unpublish-package@v1
+      - uses: o3co/github-action-unpublish-package@develop
         with:
           package-type: "npm"
           version: ${{github.event.release.tag_name}}
-          name: "test.action"
+          name: "github-action-example"
+          token: ${{secrets.GITHUB_TOKEN}}
