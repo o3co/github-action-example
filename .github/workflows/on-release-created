@@ -1,19 +1,30 @@
 # This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
 
-name: Depublish Packages 
+name: Publish Package
     
 on:
   release:
     types: [created]
 
 jobs:
-  example:
+  publish:
+    #needs: build
     runs-on: ubuntu-latest
     permissions:
+      contents: read
       packages: write
     steps:
-      - uses: o3co/github-action-publish-package@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          package-type: "npm"
-          version: ${{github.event.release.tag_name}}
-          name: "test.action"
+          node-version: 22
+          registry-url: https://npm.pkg.github.com/
+      - run: npm install
+      - run: npm version ${{github.event.release.tag_name}}
+        working-directory: ./utils/storage
+      - run: make build
+        working-directory: ./utils/storage
+      - run: npm publish
+        working-directory: ./utils/storage
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
