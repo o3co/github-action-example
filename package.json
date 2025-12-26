@@ -1,0 +1,23 @@
+{
+  "name": "@o3co/github-action-example",
+  "version": "0.0.0-SNAPSHOT",
+  "description": "",
+  "homepage": "https://github.com/o3co/github-action-example#readme",
+  "bugs": {
+    "url": "https://github.com/o3co/github-action-example/issues"
+  },
+  "publishConfig": {
+    "@o3co:registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/o3co/github-action-example.git"
+  },
+  "license": "MIT",
+  "author": "1o1 developer",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
