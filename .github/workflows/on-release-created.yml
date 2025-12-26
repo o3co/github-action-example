@@ -21,10 +21,6 @@ jobs:
           registry-url: https://npm.pkg.github.com/
       - run: npm install
       - run: npm version ${{github.event.release.tag_name}}
-        working-directory: ./utils/storage
-      - run: make build
-        working-directory: ./utils/storage
       - run: npm publish
-        working-directory: ./utils/storage
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
